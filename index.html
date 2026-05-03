@@ -73,45 +73,32 @@
         z-index: 0;
         pointer-events: none;
         overflow: hidden;
+        background-color: #000000;
       }
 
-      .bg-base {
+      .bg-nebula {
         position: absolute;
-        inset: 0;
-        background-color: var(--deep-black);
-      }
-
-      .bg-image {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("joseRech.webp");
-        background-size: cover;
-        background-position: center;
-        opacity: 0.2;
-        transform: scale(1.1);
+        width: 200vw;
+        height: 200vh;
+        top: -50vh;
+        left: -50vw;
+        background: 
+          radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.10) 0%, transparent 30%),
+          radial-gradient(circle at 60% 60%, rgba(170, 140, 44, 0.08) 0%, transparent 25%),
+          radial-gradient(circle at 60% 30%, rgba(244, 207, 87, 0.05) 0%, transparent 30%);
         filter: blur(40px);
-        animation: pulseSlow 10s ease-in-out infinite;
+        animation: spinNebula 8s linear infinite;
       }
 
-      .bg-gradient {
+      .bg-stars {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(11, 11, 11, 0.95),
-          rgba(11, 11, 11, 0.8),
-          rgba(11, 11, 11, 0.95)
-        );
-      }
-
-      .bg-noise {
-        position: absolute;
-        inset: 0;
-        opacity: 0.03;
-        mix-blend-mode: overlay;
+        width: 200vw;
+        height: 200vh;
+        top: -50vh;
+        left: -50vw;
         background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+        opacity: 0.15;
+        animation: spinStars 30s linear infinite;
       }
 
       /* Container Principal */
@@ -513,14 +500,15 @@
         }
       }
 
-      @keyframes pulseSlow {
-        0%,
-        100% {
-          opacity: 0.2;
-        }
-        50% {
-          opacity: 0.3;
-        }
+      @keyframes spinNebula {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.1); }
+        100% { transform: rotate(360deg) scale(1); }
+      }
+
+      @keyframes spinStars {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
 
       .animate-fade-in {
@@ -541,10 +529,8 @@
   <body>
     <!-- Fundo -->
     <div class="bg-layer">
-      <div class="bg-base"></div>
-      <div class="bg-image"></div>
-      <div class="bg-gradient"></div>
-      <div class="bg-noise"></div>
+      <div class="bg-stars"></div>
+      <div class="bg-nebula"></div>
     </div>
 
     <!-- Conteúdo Principal -->
