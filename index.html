@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José Rech | Terapeuta on line</title>
+    <meta
+      name="description"
+      content="Cartão de Visita Digital de José Rech - Psicanalista, Hipnólogo, Constelador Familiar e Especialista em PNL."
+    />
+
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --gold: #d4af37;
+        --gold-light: #f4cf57;
+        --gold-dark: #aa8c2c;
+        --deep-black: #0b0b0b;
+        --white: #ffffff;
+
+        --font-sans: "Montserrat", sans-serif;
+        --font-serif: "Playfair Display", serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--deep-black);
+        color: var(--white);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Barra de Rolagem Personalizada */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--deep-black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--gold);
+      }
+
+      /* Fundo */
+      .bg-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .bg-base {
+        position: absolute;
+        inset: 0;
+        background-color: var(--deep-black);
+      }
+
+      .bg-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("joseRech.webp");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        transform: scale(1.1);
+        filter: blur(40px);
+        animation: pulseSlow 10s ease-in-out infinite;
+      }
+
+      .bg-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 11, 11, 0.95),
+          rgba(11, 11, 11, 0.8),
+          rgba(11, 11, 11, 0.95)
+        );
+      }
+
+      .bg-noise {
+        position: absolute;
+        inset: 0;
+        opacity: 0.03;
+        mix-blend-mode: overlay;
+        background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+      }
+
+      /* Container Principal */
+      .main-container {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 512px;
+        margin: 0 auto;
+        padding: 2rem 1rem 3rem 1rem;
+      }
+
+      .glass-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.03); /* 97% transparente (praticamente 90%+) */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 30px;
+        border: none;
+        box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.8),
+          0 0 15px rgba(212, 175, 55, 0.1);
+        padding: 2rem;
+        overflow: hidden;
+      }
+
+      /* Cantos Dourados */
+      .corner {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-color: var(--gold);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+        pointer-events: none;
+      }
+      .corner-tl {
+        top: 0;
+        left: 0;
+        border-top: 4px solid var(--gold);
+        border-left: 4px solid var(--gold);
+        border-top-left-radius: 30px;
+      }
+      .corner-tr {
+        top: 0;
+        right: 0;
+        border-top: 4px solid var(--gold);
+        border-right: 4px solid var(--gold);
+        border-top-right-radius: 30px;
+      }
+      .corner-bl {
+        bottom: 0;
+        left: 0;
+        border-bottom: 4px solid var(--gold);
+        border-left: 4px solid var(--gold);
+        border-bottom-left-radius: 30px;
+      }
+      .corner-br {
+        bottom: 0;
+        right: 0;
+        border-bottom: 4px solid var(--gold);
+        border-right: 4px solid var(--gold);
+        border-bottom-right-radius: 30px;
+      }
+
+      /* Cabeçalho do Perfil */
+      .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+      }
+
+      .profile-pic-wrapper {
+        position: relative;
+        width: 192px;
+        height: 192px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        transition: transform 0.5s ease;
+      }
+      @media (min-width: 768px) {
+        .profile-pic-wrapper {
+          width: 224px;
+          height: 224px;
+        }
+      }
+      .profile-pic-wrapper:hover {
+        transform: scale(1.05);
+      }
+
+      .profile-pic-bg {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: linear-gradient(
+          to bottom right,
+          rgba(255, 255, 255, 0.03),
+          transparent
+        );
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02);
+      }
+
+      .profile-pic-glow {
+        position: absolute;
+        inset: 0;
+        background: rgba(212, 175, 55, 0.1);
+        filter: blur(30px);
+        border-radius: 50%;
+      }
+
+      .profile-pic {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--gold);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+      }
+
+      /* Textos */
+      .title {
+        font-family: var(--font-serif);
+        font-size: 1.875rem;
+        color: var(--white);
+        font-weight: 700;
+        letter-spacing: 0.025em;
+        margin-top: 1.5rem;
+      }
+      @media (min-width: 768px) {
+        .title {
+          font-size: 2.25rem;
+        }
+      }
+
+      .subtitle {
+        font-family: var(--font-sans);
+        font-size: 0.625rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--gold-light);
+        font-weight: 500;
+        margin-top: 0.5rem;
+        line-height: 1.6;
+      }
+      @media (min-width: 768px) {
+        .subtitle {
+          font-size: 0.75rem;
+        }
+      }
+
+      .bio {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.125rem;
+        max-width: 24rem;
+        margin: 1rem auto 0;
+        line-height: 1.6;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.75rem 0;
+      }
+
+      /* Botões / Links */
+      .links-container {
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .link-card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.25rem;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid var(--gold);
+        box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.1);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        width: 100%;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .link-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--gold-light);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 0 20px rgba(255, 215, 0, 0.5);
+      }
+
+      .link-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .link-icon-wrapper {
+        position: absolute;
+        left: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: rgba(212, 175, 55, 0.1);
+        color: var(--gold);
+        transition: all 0.3s ease;
+      }
+
+      .link-card:hover .link-icon-wrapper {
+        background: var(--gold);
+        color: var(--deep-black);
+      }
+
+      .link-icon-wrapper svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      .link-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .link-title {
+        font-family: var(--font-sans);
+        font-weight: 500;
+        color: var(--white);
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .link-card:hover .link-title {
+        color: var(--gold-light);
+      }
+
+      .link-subtitle {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+        transition: color 0.3s ease;
+        margin-top: 0.125rem;
+      }
+
+      .link-card:hover .link-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .link-arrow {
+        position: absolute;
+        right: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        color: rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .link-card:hover .link-arrow {
+        color: var(--gold);
+        transform: translateX(4px);
+      }
+
+      .link-glow {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(212, 175, 55, 0.05),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        border-radius: 50px;
+      }
+
+      .link-card:hover .link-glow {
+        opacity: 1;
+      }
+
+      /* Rodapé */
+      .footer {
+        margin-top: 3rem;
+        padding-bottom: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .footer-line {
+        width: 6rem;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0.5;
+      }
+
+      .footer-credits {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-text {
+        font-family: var(--font-sans);
+        font-size: 0.625rem;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+      }
+      @media (min-width: 768px) {
+        .footer-text {
+          font-size: 0.75rem;
+        }
+      }
+
+      .footer-text:hover {
+        color: var(--gold);
+      }
+
+      .footer-logo {
+        height: 3rem;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer-logo:hover {
+        opacity: 1;
+      }
+
+      .footer-copyright {
+        font-family: var(--font-sans);
+        font-size: 0.5625rem;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0.5rem;
+      }
+
+      /* Animações e Lógica de Carregamento */
+      #main-content {
+        opacity: 0;
+        transform: translateY(2rem);
+        transition:
+          opacity 1000ms ease-out,
+          transform 1000ms ease-out;
+      }
+
+      #main-content.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulseSlow {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+      }
+      .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fundo -->
+    <div class="bg-layer">
+      <div class="bg-base"></div>
+      <div class="bg-image"></div>
+      <div class="bg-gradient"></div>
+      <div class="bg-noise"></div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content" class="main-container">
+      <div class="glass-card">
+        <!-- Cantos Decorativos -->
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <!-- Cabeçalho -->
+        <div class="profile-header animate-fade-in">
+          <div class="profile-pic-wrapper">
+            <div class="profile-pic-bg"></div>
+            <div class="profile-pic-glow"></div>
+            <img
+              src="joseRech.webp"
+              alt="José Rech"
+              class="profile-pic"
+              onerror="
+                this.src =
+                  'https://ui-avatars.com/api/?name=Jose+Rech&background=333333&color=FFD700&size=150'
+              "
+            />
+          </div>
+
+          <h1 class="title">José Rech</h1>
+          <h2 class="subtitle">
+            Psicanalista, Hipnólogo,<br />Constelador Familiar e Especialista em
+            PNL
+          </h2>
+          <p class="bio">“Venha ressignificar sua vida!”</p>
+        </div>
+
+        <!-- Links -->
+        <div class="links-container animate-slide-up delay-200">
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/5561991736251"
+            target="_blank"
+            class="link-card"
+          >
+            <div class="link-content">
+              <div class="link-icon-wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                </svg>
+              </div>
+              <div class="link-text">
+                <span class="link-title">WhatsApp</span>
+                <span class="link-subtitle">Agende sua sessão</span>
+              </div>
+            </div>
+            <svg
+              class="link-arrow"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+            <div class="link-glow"></div>
+          </a>
+
+          <!-- Salvar Contato -->
+          <a href="#" target="_blank" class="link-card">
+            <div class="link-content">
+              <div class="link-icon-wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <line x1="19" x2="19" y1="8" y2="14" />
+                  <line x1="22" x2="16" y1="11" y2="11" />
+                </svg>
+              </div>
+              <div class="link-text">
+                <span class="link-title">Salvar Contato</span>
+                <span class="link-subtitle">Adicione à sua agenda</span>
+              </div>
+            </div>
+            <svg
+              class="link-arrow"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+            <div class="link-glow"></div>
+          </a>
+
+          <!-- Google -->
+          <a href="#" target="_blank" class="link-card">
+            <div class="link-content">
+              <div class="link-icon-wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12.48 10.92v3.28h4.74c-.18 1.18-.84 2.18-1.84 2.84v2.36h2.98c1.74-1.6 2.74-3.96 2.74-6.76 0-.58-.06-1.14-.16-1.72h-8.46z" />
+                  <path d="M12.48 24c2.56 0 4.7-0.84 6.26-2.28l-2.98-2.36c-0.82 0.56-1.88 0.88-3.28 0.88-2.52 0-4.66-1.7-5.42-4H3.94v2.46c1.58 3.12 4.8 5.3 8.54 5.3z" />
+                  <path d="M7.06 16.24c-0.2-0.58-0.32-1.2-0.32-1.84s0.12-1.26 0.32-1.84V10.1H3.94c-0.64 1.28-1 2.72-1 4.3s0.36 3.02 1 4.3l3.12-2.36z" />
+                  <path d="M12.48 5.38c1.4 0 2.66 0.48 3.64 1.42l2.72-2.72c-1.7-1.58-3.94-2.56-6.36-2.56-3.74 0-6.96 2.18-8.54 5.3l3.12 2.46c0.76-2.3 2.9-4 5.42-4z" />
+                </svg>
+              </div>
+              <div class="link-text">
+                <span class="link-title" style="font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em;">GOOGLE</span>
+                <span class="link-subtitle">deixe o seu feedback</span>
+              </div>
+            </div>
+            <svg
+              class="link-arrow"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+            <div class="link-glow"></div>
+          </a>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer animate-slide-up delay-400">
+          <div class="footer-line"></div>
+
+          <div class="footer-credits">
+            <span class="footer-text">Feito pela</span>
+            <img
+              src="logoMulty.webp"
+              alt="Multy Digital"
+              class="footer-logo"
+              onerror="this.style.display = 'none'"
+            />
+          </div>
+
+          <div class="footer-copyright">
+            © <span id="year"></span> Todos os direitos reservados
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <script>
+      // Atualiza o ano dos direitos autorais
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Aciona a animação de entrada ao carregar
+      window.onload = function () {
+        const mainContent = document.getElementById("main-content");
+        setTimeout(() => {
+          mainContent.classList.add("loaded");
+        }, 100);
+      };
+    </script>
+  </body>
+</html>

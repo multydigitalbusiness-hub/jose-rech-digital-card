@@ -1,0 +1,24 @@
+Atue como um Especialista em UI/UX e Desenvolvedor Web Sênior.
+Sua Tarefa:
+Crie uma página de 'Links na Bio' (estilo Linktree) moderna e luxuosa para uso pessoal/profissional.
+
+⚠️ REGRAS TÉCNICAS (Obrigatório):
+1. Entregue o código em UM ÚNICO ARQUIVO HTML (com todo CSS e JS embutidos nele).
+2. Design Mobile-First (feito para ficar perfeito na tela do celular).
+3. Use a fonte 'Poppins' ou 'Montserrat' do Google Fonts.
+4. Use ícones do 'FontAwesome' (via CDN) para as redes sociais.
+
+⚠️ REGRA DE NAVEGAÇÃO CRÍTICA:
+Todos os links (botões e ícones sociais) devem ter obrigatoriamente o atributo target='_blank' para abrirem sempre em uma NOVA ABA.
+
+Design Visual (Estilo Glassmorphism):
+Fundo: Um gradiente animado suave (cores modernas:60% (Cor Dominante) Cinza Chumbo (#333333),(Cor Secundária): Amarelo (botões ou títulos grandes), 10% (Cor de Destaque): Turquesa (#00FFFF) (ícones, bordas finas ou o link mais importante) que se move lentamente.
+Card Principal: Efeito de vidro fosco (Glassmorphism) com desfoque, borda dourada luxuosa e transparência.
+Botões: Botões largos, com bordas arredondadas, fundo branco translúcido e efeito 'Hover' (brilho ao passar o mouse).
+
+Estrutura do Conteúdo:
+1. Foto de Perfil redonda com borda branca (placeholder).
+2. Nome em destaque: 'José Rech | Terapia on line'.
+3. Bio curta e elegante: 'Venha resignificar sua vida!'.
+4. Botões ( WhatsApp, Salvar Contato, Nos avalie no Google ) numa linha horizontal.
+5. Rodapé pequeno: 'Feito pela (logoMulty.webp)'.
